@@ -34,4 +34,3 @@
 - OCR -> Optical Character Recognization
 - Now for Tabluar data (docling) help to convert table into text preserving the rows and columns
 - WebScrapping -> PUPPETEER
-- 

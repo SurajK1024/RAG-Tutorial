@@ -3,6 +3,7 @@ Invoking the LLM using Some prompts
 """
 
 from langchain_openai import OpenAI
+from langchain_ollama.chat_models import ChatOllama
 from langchain_core.prompts import PromptTemplate
 
 import os
@@ -23,7 +24,16 @@ User Query:{user_query}
 """
 )
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 user_query = input()
-result = client.invoke(prompt.format(user_query=user_query))
-print(result)
+#result = client.invoke(prompt.format(user_query=user_query))
+#print(result)
+
+llm = ChatOllama(model="qwen3:1.7b")
+print(
+    llm.invoke(
+        prompt.format(
+            user_query=user_query
+            )
+        )
+    )

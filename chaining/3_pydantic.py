@@ -1,4 +1,5 @@
 from langchain_openai import ChatOpenAI
+from langchain_ollama.chat_models import ChatOllama
 from langchain_core.prompts import PromptTemplate
 from pydantic import BaseModel, Field
 import os
@@ -19,11 +20,13 @@ Act as a Travel Instructor.
 User Query: {user_query}
 """)
 
-llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0,
-    api_key=os.getenv("OPENAI_API_KEY")
-)
+# llm = ChatOpenAI(
+#     model="gpt-4o-mini",
+#     temperature=0,
+#     api_key=os.getenv("OPENAI_API_KEY")
+# )
+
+llm = ChatOllama(model="qwen3:1.7b")
 
 structured_llm = llm.with_structured_output(ResponseModel)
 

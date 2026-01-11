@@ -1,0 +1,23 @@
+Queries:
+parsihable thing in my specic outlet
+
+data 
+- skus persibale
+- location
+
+1st -> convert query to a proper information
+date: 
+location: 
+product: persibale
+
+2nd -> create db queries 
+SQLToolkit -> 
+Data -> Tables -> columns -> forgien keys to store text
+
+chucked tables.
+table
+col...
+for...
+
+
+proper informations here in table format

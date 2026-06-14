@@ -2,6 +2,7 @@ from typing import TypedDict, Literal
 from langchain_ollama.chat_models import ChatOllama
 from langgraph.graph import StateGraph, START, END
 from langchain_core.messages import AIMessage, HumanMessage, BaseMessage, SystemMessage
+from langgraph.checkpoint.memory import InMemorySaver
 
 from pydantic import BaseModel
 
@@ -68,7 +69,7 @@ def shouldContinueSurvey(state: ResponseState) -> str:
         return "askQuestion"
     return "summarize"
 
-def Agent():
+def Agent(checkpoint):
     workflow = StateGraph(ResponseState)
 
     workflow.add_node("HumanResponseNode", getHumanResponse)
@@ -86,7 +87,7 @@ def Agent():
         }
     )
     workflow.add_edge("SummarizeNode", END)
-    return workflow.compile()
+    return workflow.compile(checkpointer=checkpoint)
 
 if __name__ == "__main__":
     inital_state: ResponseState = {
@@ -97,8 +98,18 @@ if __name__ == "__main__":
         "shouldQuestion": True
     }
 
-    personalityAgent = Agent()
+    config = {
+        "configurable": {
+            "thread_id": 1024
+            }
+        }
+    
+    checkpoint = InMemorySaver()
 
-    final_response = personalityAgent.invoke(inital_state)
+    personalityAgent = Agent(checkpoint)
+
+    final_response = personalityAgent.invoke(inital_state, config=config)
 
     print(final_response)
+
+    print(personalityAgent.get_state(config=config))

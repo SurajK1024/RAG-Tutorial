@@ -1,0 +1,18 @@
+Travel Agent should able to plan, research and book the trip for you.
+
+So this 3 are the main areas a travel agent should remember.
+But there are alot of things should be kept in mind before doing all this things
+
+1. The travel should be according to the hobbies and things the person wants to do (Personalized Travel)
+2. Be a guide to the how to explore the destination
+3. know the timing and weather of the place to travel
+4. Budget friendly
+5. documentation and safety the things
+6. Troubleshoot all the things
+
+So creating an AI agent to do this all things.
+
+First I will start with the sub-agent that will create a persons data so that it will have personized touch in planning
+
+Agent will ask some questions that will be saved in vectorstore as characterstic of the person and then this characterstics will be used as base point to the travel points.
+
